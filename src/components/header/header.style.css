@@ -1,0 +1,28 @@
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--panel-color);
+    padding: 0.5rem 1rem;
+}
+.header-title {
+}
+.header-title span {
+    background-color: var(--text-color);
+    color: var(--panel-color);
+    padding: 0rem 0.5rem;
+}
+.options {
+    display: flex;
+}
+.option {
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.option:hover {
+    transform: scale(1.15);
+}
