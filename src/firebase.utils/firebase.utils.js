@@ -34,11 +34,14 @@ export const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
     try {
+        console.log("trying to add");
         const res = await signInWithPopup(auth, googleProvider);
+        console.log(res);
         const user = res.user;
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         const docs = await getDocs(q);
         if (docs.docs.length === 0) {
+            console.log("adding new user to database");
             await addDoc(collection(db, "users"), {
                 uid: user.uid,
                 name: user.displayName,

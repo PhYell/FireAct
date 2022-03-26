@@ -26,3 +26,7 @@ header {
 .option:hover {
     transform: scale(1.15);
 }
+.nav-image {
+    height: 1rem;
+    transform: scale(1.6);
+}

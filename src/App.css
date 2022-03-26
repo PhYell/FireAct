@@ -16,6 +16,9 @@
 body {
     background-color: var(--background-color);
 }
+.App {
+    /* text-align: center; */
+}
 .centered {
     max-width: 600px;
     margin: auto;

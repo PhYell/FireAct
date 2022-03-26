@@ -41,7 +41,7 @@ const SignIn = () => {
     }, [user, loading]);
 
     return (
-        <main className="sign-in-page">
+        <div className="sign-in-page">
             <form onSubmit={handleSubmit}>
                 <FormInput
                     name="email"
@@ -73,7 +73,7 @@ const SignIn = () => {
                     </CustomButton>
                 </div>
             </form>
-        </main>
+        </div>
     );
 };
 

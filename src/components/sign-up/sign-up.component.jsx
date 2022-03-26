@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 
+import "./sign-up.style.css";
+
 import {
     auth,
     registerWithEmailAndPassword,
@@ -29,7 +31,17 @@ const SignUp = () => {
     const handleChange = (event) => {
         const { value, name } = event.target;
 
-        name == "email" ? setEmail(value) : setPassword(value);
+        switch (name) {
+            case "email":
+                setEmail(value);
+                break;
+            case "password":
+                setPassword(value);
+                break;
+            case "name":
+                setName(value);
+                break;
+        }
     };
 
     const register = () => {

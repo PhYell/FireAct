@@ -10,6 +10,19 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 const UserPage = () => {
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
+
+    const navigate = useNavigate();
+
+    if (!user) navigate("/");
+
+    return (
+        <main className="userPage panel centered">
+            <h2 className="greeting">
+                you are signed in as{" "}
+                <span className="user-name">{user?.displayName}</span>
+            </h2>
+        </main>
+    );
 };
 
 export default UserPage;

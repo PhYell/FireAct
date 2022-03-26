@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import "./header.style.css";
 
 import { auth, db, logout } from "../../firebase.utils/firebase.utils";
+import { ReactComponent as LogOut } from "../../assets/logout.svg";
+import { ReactComponent as Home } from "../../assets/home.svg";
 
 const Header = ({ currentUser }) => {
     const [user, loading, error] = useAuthState(auth);
@@ -50,8 +52,13 @@ const Header = ({ currentUser }) => {
                     Link
                 </Link>
                 {user ? (
+                    <Link className="option" to="/userpage">
+                        <Home className="nav-image" />
+                    </Link>
+                ) : null}
+                {user ? (
                     <div className="option" onClick={logout}>
-                        SIGN OUT{" "}
+                        <LogOut className="nav-image" />
                     </div>
                 ) : (
                     <Link className="option" to="/signin">

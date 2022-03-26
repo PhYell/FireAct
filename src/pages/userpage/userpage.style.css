@@ -1,0 +1,7 @@
+.greeting {
+    color: var(--weak-text-color);
+    font-size: 1rem;
+}
+.user-name {
+    color: var(--text-color);
+}
