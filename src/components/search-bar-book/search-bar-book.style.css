@@ -1,0 +1,32 @@
+.search-bar-book {
+    margin-top: -2px;
+    border-bottom: 2px solid var(--text-color);
+    border-top: 2px solid var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--panel-color);
+    border-radius: 0.4rem;
+}
+.search-bar-book:hover .search-bar-title,
+.search-bar-book:hover .search-bar-date {
+    color: var(--weak-text-color);
+}
+.search-bar-title {
+    font-size: 0.9rem;
+    padding: 4px;
+    transition: 0.8s ease-in-out;
+}
+.search-bar-date {
+    font-size: 0.6rem;
+    padding: 4px;
+    transition: 0.8s ease-in-out;
+}
+.search-bar-image {
+    height: 120px;
+    width: auto;
+}
+.search-bar-box-text {
+    display: flex;
+    gap: 0.4rem;
+}

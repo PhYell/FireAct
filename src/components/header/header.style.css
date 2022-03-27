@@ -4,13 +4,33 @@ header {
     justify-content: space-between;
     background-color: var(--panel-color);
     padding: 0.5rem 1rem;
+    box-shadow: 0px 0px 9px -5px #000000;
+    color: var(--text-color);
 }
 .header-title {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--panel-color);
+    user-select: none;
 }
 .header-title span {
+    margin-left: 5px;
     background-color: var(--text-color);
     color: var(--panel-color);
     padding: 0rem 0.5rem;
+    border-radius: 0.5rem;
+}
+.site-description {
+    margin-top: -0.8rem;
+    font-size: 0.6rem;
+    letter-spacing: 2.2px;
+    white-space: nowrap;
+    font-weight: bold;
+
+    /* color: var(--text-color); */
+    mix-blend-mode: difference;
+    /* color: var(--panel-color); */
+    color: rgb(255, 255, 255);
 }
 .options {
     display: flex;
@@ -27,6 +47,8 @@ header {
     transform: scale(1.15);
 }
 .nav-image {
-    height: 1rem;
-    transform: scale(1.6);
+    height: 1.7rem;
+    width: 1.7rem;
+    color: var(--text-color);
+    /* transform: scale(1.6); */
 }

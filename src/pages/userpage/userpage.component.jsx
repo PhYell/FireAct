@@ -16,8 +16,8 @@ const UserPage = () => {
     if (!user) navigate("/");
 
     return (
-        <main className="userPage panel centered">
-            <h2 className="greeting">
+        <main className="userPage">
+            <h2 className="greeting panel centered">
                 you are signed in as{" "}
                 <span className="user-name">{user?.displayName}</span>
             </h2>
