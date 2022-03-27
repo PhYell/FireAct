@@ -7,6 +7,7 @@
     justify-content: space-between;
     background-color: var(--panel-color);
     border-radius: 0.4rem;
+    cursor: pointer;
 }
 .search-bar-book:hover .search-bar-title,
 .search-bar-book:hover .search-bar-date {

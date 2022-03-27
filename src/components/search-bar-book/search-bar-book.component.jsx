@@ -1,14 +1,21 @@
+import { useNavigate } from "react-router-dom";
+
 import "./search-bar-book.style.css";
 
 const SearchBarBook = ({ id, title, publishedDate, image, author }) => {
+    const navigate = useNavigate();
+
     return (
-        <div className="search-bar-book">
-            <h2 className="search-bar-title">{title ? title : null}</h2>
+        <div
+            className="search-bar-book"
+            onClick={() => navigate(`./bookpage${id}`, { replace: true })}
+        >
+            <h2 className="search-bar-title">{title ? title : ""}</h2>
             <div className="search-bar-box-text">
                 <p className="search-bar-date">
-                    {publishedDate ? publishedDate : null}
+                    {publishedDate ? publishedDate : ""}
                 </p>
-                <p className="search-bar-date">{author ? author : null}</p>
+                <p className="search-bar-date">{author ? author : ""}</p>
             </div>
 
             {/* <img

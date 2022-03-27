@@ -20,6 +20,7 @@
     font-weight: bold;
     transition: 0.1s ease-in-out;
     color: var(--panel-color);
+    cursor: pointer;
 }
 .link-to-full-search-page:hover {
     transform: scale(1.1);

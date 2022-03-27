@@ -9,6 +9,8 @@ import { auth, db } from "../../firebase.utils/firebase.utils";
 import SearchResult from "../search-result/search-result.component";
 import SearchBox from "../search-box/search-box.component";
 
+let lastChanged = null;
+
 const SearchBar = () => {
     const [hasFocus, setFocus] = useState(false);
     const [searchValue, setSearchValue] = useState();
@@ -23,11 +25,13 @@ const SearchBar = () => {
         setSearchValue(event.target.value);
     };
 
-    const onFocusChange = (event) => {
+    const onFocusChange = () => {
         setFocus(true);
     };
     const onBlurChange = () => {
-        setFocus(false);
+        setTimeout(() => {
+            setFocus(false);
+        }, 300);
     };
 
     useEffect(() => {
@@ -43,16 +47,7 @@ const SearchBar = () => {
                     setLoading(false);
                 });
         else {
-            fetch(baseAPI + searchValue)
-                .then((res) => res.json())
-                .then((data) => setBooks(data))
-                .catch((err) => {
-                    setError(err.message);
-                    setBooks(null);
-                })
-                .finally(() => {
-                    setLoading(false);
-                });
+            setSearchValue(null);
         }
     }, [searchValue]);
 
@@ -65,7 +60,9 @@ const SearchBar = () => {
                 onBlurChange={onBlurChange}
             />
             <Search className="search-icon" />
-            {hasFocus ? !loading && <SearchResult books={books?.docs} /> : null}
+            {hasFocus && searchValue && !loading && (
+                <SearchResult books={books?.docs} />
+            )}
         </div>
     );
 };
