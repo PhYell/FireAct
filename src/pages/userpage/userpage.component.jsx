@@ -15,12 +15,15 @@ const UserPage = () => {
 
     if (!user) navigate("/");
 
+    console.log(user);
+
     return (
         <main className="userPage">
             <h2 className="greeting panel centered">
                 you are signed in as{" "}
                 <span className="user-name">{user?.displayName}</span>
             </h2>
+            <div className="favorites panel centered"></div>
         </main>
     );
 };
