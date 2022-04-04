@@ -1,15 +1,22 @@
 import "./book-item.style.css";
-
+import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "../../firebase.utils/firebase.utils";
+import {
+    auth,
+    addToReadingList,
+    removeFromReadingList,
+} from "../../firebase.utils/firebase.utils";
 
-const BookItem = ({ id, title, publishedDate, author, image }) => {
+const BookItem = ({ id, readingList, title, publishedDate, author, image }) => {
     const [user] = useAuthState(auth); // add or remove selected to db
     // console.log(user);
     // console.log(db);
-    const addToDb = () => {
-        console.log(`adding book with id ${id} to db(no)`);
-    };
+    const [isInReadingArr, setIsInReadingArr] = useState();
+    // isInReadingArr.then((res) => console.log(id, " : ", res));
+
+    useEffect(() => {
+        readingList.then((res) => setIsInReadingArr(res.includes(id)));
+    }, []);
 
     return (
         <div className="book-item">
@@ -20,10 +27,21 @@ const BookItem = ({ id, title, publishedDate, author, image }) => {
                 }}
             />
             <div className="book-option-list">
-                <div className="book-option" onClick={addToDb}>
-                    <span className="book-plus">+</span>
+                <div
+                    className="book-option"
+                    onClick={() => {
+                        isInReadingArr
+                            ? addToReadingList(user, "reading list", id)
+                            : removeFromReadingList(user, "reading list", id);
+                    }}
+                >
+                    <span className="book-plus">
+                        {isInReadingArr ? "-" : "+"}
+                    </span>
                     <span className="book-option-text">
-                        add to reading list
+                        {isInReadingArr
+                            ? "remove from reading list"
+                            : "add to reading list"}
                     </span>
                 </div>
                 <div className="book-option">

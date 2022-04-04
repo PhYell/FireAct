@@ -18,6 +18,10 @@ import {
     setDoc,
     doc,
     setData,
+    updateDoc,
+    arrayUnion,
+    arrayRemove,
+    getDoc,
 } from "firebase/firestore";
 
 const config = {
@@ -93,7 +97,25 @@ export const logout = () => {
     signOut(auth);
 };
 
-export const addToDb = (user, section, bookId) => {
+export const addToReadingList = async (user, section, itemId) => {
+    await updateDoc(doc(db, "users", user.uid), {
+        readingList: arrayUnion(itemId),
+    });
+};
+
+export const getReadingList = async (user) => {
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
-    console.log(q);
+    const docs = await getDocs(q);
+
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        return docSnap.data().readingList;
+    }
+    return null;
+};
+
+export const removeFromReadingList = async (user) => {
+    console.log("removing from reading list");
 };

@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useState } from "react";
+import { auth, getReadingList } from "../../firebase.utils/firebase.utils";
 
 import "./search-result.style.css";
 
@@ -8,6 +10,9 @@ import BookItem from "../book-item/book-item.component";
 
 const SearchResult = ({ books }) => {
     const navigate = useNavigate();
+    const [user] = useAuthState(auth);
+
+    // getReadingList(user);
 
     return (
         <div className="book-search-panel panel centered">
@@ -15,6 +20,7 @@ const SearchResult = ({ books }) => {
                 <BookItem
                     key={book.key}
                     id={book.key}
+                    readingList={getReadingList(user)}
                     title={book.title}
                     publishedDate={book.first_publish_year}
                     author={book.author_name}
