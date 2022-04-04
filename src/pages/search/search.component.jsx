@@ -6,6 +6,8 @@ import SearchResult from "../../components/search-result/search-result.component
 const Search = () => {
     const [hasFocus, setFocus] = useState(false);
     const [searchValue, setSearchValue] = useState();
+    const [debouncedSearchValue, setDebouncedSearchValue] =
+        useState(searchValue);
     const [books, setBooks] = useState();
 
     const [loading, setLoading] = useState(true);
@@ -14,7 +16,7 @@ const Search = () => {
     const baseAPI = "http://openlibrary.org/search.json?limit=5&q=";
 
     const onSearchChange = (event) => {
-        setSearchValue(event.target.value);
+        setDebouncedSearchValue(event.target.value);
     };
 
     const onFocusChange = () => {
@@ -25,6 +27,14 @@ const Search = () => {
             setFocus(false);
         }, 300);
     };
+
+    useEffect(() => {
+        const timer = setTimeout(
+            () => setSearchValue(debouncedSearchValue),
+            1000
+        );
+        return () => clearTimeout(timer);
+    }, [debouncedSearchValue]);
 
     useEffect(() => {
         if (searchValue !== null && searchValue !== "")
