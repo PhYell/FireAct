@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase.utils/firebase.utils";
 
 import SearchBar from "../../components/search-bar/search-bar.component";
 import SearchResult from "../../components/search-result/search-result.component";
@@ -9,6 +11,8 @@ const Search = () => {
     const [debouncedSearchValue, setDebouncedSearchValue] =
         useState(searchValue);
     const [books, setBooks] = useState();
+
+    const [user] = useAuthState(auth); // get favourites and selected and pass them to books.
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);

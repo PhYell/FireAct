@@ -1,6 +1,16 @@
 import "./book-item.style.css";
 
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "../../firebase.utils/firebase.utils";
+
 const BookItem = ({ id, title, publishedDate, author, image }) => {
+    const [user] = useAuthState(auth); // add or remove selected to db
+    // console.log(user);
+    // console.log(db);
+    const addToDb = () => {
+        console.log(`adding book with id ${id} to db(no)`);
+    };
+
     return (
         <div className="book-item">
             <div
@@ -10,11 +20,15 @@ const BookItem = ({ id, title, publishedDate, author, image }) => {
                 }}
             />
             <div className="book-option-list">
-                <div>
-                    +<span className="book-option">add to reading list</span>
+                <div className="book-option" onClick={addToDb}>
+                    <span className="book-plus">+</span>
+                    <span className="book-option-text">
+                        add to reading list
+                    </span>
                 </div>
-                <div>
-                    +<span className="book-option">add to favorites</span>
+                <div className="book-option">
+                    <span className="book-plus">+</span>
+                    <span className="book-option-text">add to favorites</span>
                 </div>
             </div>
             <div className="content">

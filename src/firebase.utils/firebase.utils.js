@@ -15,6 +15,9 @@ import {
     collection,
     where,
     addDoc,
+    setDoc,
+    doc,
+    setData,
 } from "firebase/firestore";
 
 const config = {
@@ -27,6 +30,8 @@ const config = {
     measurementId: "G-5R1BBFRL5Z",
 };
 
+let currentUserId;
+
 const app = initializeApp(config);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
@@ -34,15 +39,13 @@ export const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
     try {
-        console.log("trying to add");
         const res = await signInWithPopup(auth, googleProvider);
         console.log(res);
         const user = res.user;
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         const docs = await getDocs(q);
         if (docs.docs.length === 0) {
-            console.log("adding new user to database");
-            await addDoc(collection(db, "users"), {
+            await setDoc(doc(db, "users", user.uid), {
                 uid: user.uid,
                 name: user.displayName,
                 authProvider: "google",
@@ -66,7 +69,7 @@ export const registerWithEmailAndPassword = async (name, email, password) => {
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const user = res.user;
-        await addDoc(collection(db, "users"), {
+        const { id } = await addDoc(collection(db, "users"), {
             uid: user.uid,
             name,
             authProvider: "local",
@@ -88,4 +91,9 @@ export const sendPasswordReset = async (email) => {
 };
 export const logout = () => {
     signOut(auth);
+};
+
+export const addToDb = (user, section, bookId) => {
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    console.log(q);
 };

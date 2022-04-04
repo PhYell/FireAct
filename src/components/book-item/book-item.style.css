@@ -44,6 +44,7 @@
     opacity: 0.7;
     width: 100%;
     position: absolute;
+    user-select: none;
 
     /* animation: slideFromBottom 0.5s; */
     /* text-align: center; */
@@ -66,10 +67,25 @@
 }
 .book-option {
     display: inline-block;
-    transition: 0.3s ease-in-out;
+    width: fit-content;
 }
-.book-option:hover {
-    padding: 0 10px;
+.book-option-text,
+.book-plus {
+    transition: 0.3s ease-in-out;
+    /* position: relative; */
+}
+.book-plus {
+    margin-right: 3px;
+    font-weight: bold;
+}
+.book-option-text:hover {
+    padding: 0 7px;
+    letter-spacing: 1px;
+    color: #868686;
+}
+.book-option:hover .book-plus {
+    color: #4aa7e0;
+    transform: rotate(15deg);
 }
 .book-title {
     font-weight: bold;
