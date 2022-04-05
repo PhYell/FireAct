@@ -104,8 +104,8 @@ export const addToReadingList = async (user, section, itemId) => {
 };
 
 export const getReadingList = async (user) => {
-    const q = query(collection(db, "users"), where("uid", "==", user.uid));
-    const docs = await getDocs(q);
+    // const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    // const docs = await getDocs(q);
 
     const docRef = doc(db, "users", user.uid);
     const docSnap = await getDoc(docRef);

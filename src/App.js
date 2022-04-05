@@ -13,9 +13,9 @@ import BookPage from "./pages/book-page/book-page.component";
 const App = () => {
     const [currentUser, setCurrentUser] = useState(null);
 
-    useEffect(() => {
-        console.log("current user : ", currentUser);
-    }, [currentUser]);
+    // useEffect(() => {
+    //     console.log("current user : ", currentUser);
+    // }, [currentUser]);
 
     return (
         <div className="App">

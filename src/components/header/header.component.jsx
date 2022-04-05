@@ -18,8 +18,6 @@ const Header = ({ currentUser }) => {
 
     const navigate = useNavigate();
 
-    console.log(user);
-
     return (
         <header>
             <Link to="/">

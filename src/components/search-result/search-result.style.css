@@ -7,6 +7,7 @@
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
+    padding-top: 3vh;
 }
 .book-title {
     font-size: 1.1rem;

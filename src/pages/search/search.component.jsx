@@ -17,7 +17,7 @@ const Search = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
-    const baseAPI = "http://openlibrary.org/search.json?limit=5&q=";
+    const baseAPI = "http://openlibrary.org/search.json?limit=20&q=";
 
     const onSearchChange = (event) => {
         setDebouncedSearchValue(event.target.value);
