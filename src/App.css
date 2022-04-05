@@ -7,6 +7,7 @@
     --panel-color: white;
     --text-color: #313236;
     --weak-text-color: #aeb3bf;
+    --strong-text-color: #101011;
 
     text-decoration: none;
     color: var(--text-color);

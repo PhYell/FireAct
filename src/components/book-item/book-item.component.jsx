@@ -12,11 +12,25 @@ const BookItem = ({ id, readingList, title, publishedDate, author, image }) => {
     // console.log(user);
     // console.log(db);
     const [isInReadingArr, setIsInReadingArr] = useState();
-    // isInReadingArr.then((res) => console.log(id, " : ", res));
+    const [readingArr, setReadingArr] = useState([]);
 
     useEffect(() => {
         readingList.then((res) => setIsInReadingArr(res.includes(id)));
+        readingList.then((res) => setReadingArr(res));
+        console.log("pog");
     }, []);
+
+    const clickDetected = () => {
+        if (!isInReadingArr) {
+            setReadingArr([...readingArr, id]);
+            addToReadingList(user, "reading list", id);
+            setIsInReadingArr(true);
+        } else {
+            setReadingArr(readingArr.filter((item) => item !== id));
+            removeFromReadingList(user, id);
+            setIsInReadingArr(false);
+        }
+    };
 
     return (
         <div className="book-item">
@@ -27,15 +41,12 @@ const BookItem = ({ id, readingList, title, publishedDate, author, image }) => {
                 }}
             />
             <div className="book-option-list">
-                <div
-                    className="book-option"
-                    onClick={() => {
-                        isInReadingArr
-                            ? addToReadingList(user, "reading list", id)
-                            : removeFromReadingList(user, "reading list", id);
-                    }}
-                >
-                    <span className="book-plus">
+                <div className="book-option" onClick={clickDetected}>
+                    <span
+                        className={`book-plus ${
+                            isInReadingArr ? "red" : "blue"
+                        }`}
+                    >
                         {isInReadingArr ? "-" : "+"}
                     </span>
                     <span className="book-option-text">

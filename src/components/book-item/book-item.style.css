@@ -56,6 +56,7 @@
     animation: slideFromBottom 0.5s;
 }
 .book-option-list {
+    color: var(--text-color);
     height: 3.6rem;
     top: 0;
     font-size: 0.9rem;
@@ -81,23 +82,33 @@
 .book-option-text:hover {
     padding: 0 7px;
     letter-spacing: 1px;
-    color: #868686;
+    color: var(--strong-text-color);
 }
-.book-option:hover .book-plus {
+.book-option:hover .blue {
     color: #4aa7e0;
-    transform: rotate(15deg);
+}
+.book-option:hover .red {
+    color: #f04d3f;
 }
 .book-title {
     font-weight: bold;
     margin-bottom: 6px;
     font-size: 1.1rem;
-    color: #4a4a4a;
+    color: var(--text-color);
 }
 .book-subtitle {
     font-size: 0.6rem;
     display: flex;
+    color: var(--text-color);
     justify-content: space-between;
 }
+/* .book-plus .blue {
+    color: #4aa7e0 !important;
+}
+.book-plus .red {
+    color: #f04d3f !important;
+} */
+
 @keyframes slideFromBottom {
     from {
         margin-bottom: -100%;

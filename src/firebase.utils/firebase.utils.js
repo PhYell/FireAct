@@ -116,6 +116,8 @@ export const getReadingList = async (user) => {
     return null;
 };
 
-export const removeFromReadingList = async (user) => {
-    console.log("removing from reading list");
+export const removeFromReadingList = async (user, itemId) => {
+    await updateDoc(doc(db, "users", user.uid), {
+        readingList: arrayRemove(itemId),
+    });
 };
